@@ -23,27 +23,27 @@ public class DoctorController {
         List<Doctor> doctors = doctorService.getAllDoctor();
         return new ResponseEntity<>(doctors, HttpStatus.OK);
     }
-    @GetMapping("/find/{doctorId}")
-    public ResponseEntity<Doctor> getDoctorById(@PathVariable("doctorId") Integer doctorId) throws ResourceNotFoundException {
-        Doctor doctor = doctorService.getASingleDoctor(doctorId);
+    @GetMapping("/find/{doctId}")
+    public ResponseEntity<Doctor> getDoctorById(@PathVariable("doctId") Integer doctId) throws ResourceNotFoundException {
+        Doctor doctor = doctorService.getASingleDoctor(doctId);
         return new ResponseEntity<>(doctor, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorRequest doctor ) throws ResourceNotFoundException {
+    public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorRequest doctor) throws ResourceNotFoundException {
         MessageResponse newDoctor = doctorService.createDoctor(doctor);
         return new ResponseEntity<>(newDoctor, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{doctorId}")
-    public Optional<Doctor> updateDoctor(@PathVariable Integer doctorId, @RequestBody DoctorRequest doctor) throws ResourceNotFoundException {
-        Optional<Doctor> updateDoctor = doctorService.updateDoctor(doctorId,doctor);
+    @PutMapping("/update/{doctId}")
+    public Optional<Doctor> updateDoctor(@PathVariable Integer doctId, @RequestBody DoctorRequest doctor) throws ResourceNotFoundException {
+        Optional<Doctor> updateDoctor = doctorService.updateDoctor(doctId, doctor);
         return updateDoctor;
     }
 
-    @DeleteMapping("/delete/doctorId")
-    public ResponseEntity<?> deleteDoctor(@PathVariable("doctorId") Integer doctorId) throws ResourceNotFoundException {
-        doctorService.deleteDoctor(doctorId);
+    @DeleteMapping("/delete/{doctId}")
+    public ResponseEntity<?> deleteDoctor(@PathVariable("doctId") Integer doctId) throws ResourceNotFoundException {
+        doctorService.deleteDoctor(doctId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

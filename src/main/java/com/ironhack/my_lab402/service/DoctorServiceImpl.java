@@ -32,7 +32,7 @@ public class DoctorServiceImpl implements DoctorService {
         Optional<Doctor> doctor = doctorRepository.findById(doctId);
         if (doctor.isEmpty()){
             throw new ResourceNotFoundException("Doctor", "doctorId", doctId);
-        }else {
+        } else {
             doctor.get().setEmployee_id(doctorRequest.getEmployee_id());
             doctor.get().setDepartment(doctorRequest.getDepartment());
             doctor.get().setName(doctorRequest.getName());
@@ -43,6 +43,14 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
+    public void deleteDoctor(Integer doctId) throws ResourceNotFoundException{
+        if (Objects.equals(doctorRepository.getById(doctId).getDoctorId(), doctId)){
+            doctorRepository.deleteById(doctId);
+        }else {
+            throw new ResourceNotFoundException("Doctor", "doctorId", doctId);
+        }
+    }
+    @Override
     public Doctor getASingleDoctor(Integer doctId) throws ResourceNotFoundException{
         return doctorRepository.findById(doctId).orElseThrow(() -> new ResourceNotFoundException("Doctor", "doctorId", doctId));
     }
@@ -52,12 +60,5 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.findAll();
     }
 
-    @Override
-    public void deleteDoctor(Integer doctId) throws ResourceNotFoundException{
-        if (Objects.equals(doctorRepository.getById(doctId).getDoctorId(), doctId)){
-            doctorRepository.deleteById(doctId);
-        }else {
-            throw new ResourceNotFoundException("Doctor", "doctorId", doctId);
-        }
-    }
+
 }
