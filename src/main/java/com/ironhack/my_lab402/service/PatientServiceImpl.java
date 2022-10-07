@@ -20,12 +20,15 @@ import java.util.Optional;
 public class PatientServiceImpl implements PatientService{
     @Autowired
     PatientRepository patientRepository;
+    @Autowired
+    DoctorRepository doctorRepository;
     @Override
     public MessageResponse createPatient(PatientRequest patientRequest){
         Patient newPatient = new Patient();
         newPatient.setName(patientRequest.getName());
         newPatient.setDate_of_birth(patientRequest.getDate_of_birth());
-        newPatient.setAdmitted_by(patientRequest.getAdmitted_by());
+        Doctor savedDoctor = doctorRepository.save(patientRequest.getDoctor());
+        newPatient.setDoctor(savedDoctor);
         patientRepository.save(newPatient);
         return new MessageResponse("New patient created successfully");
     }
@@ -38,7 +41,7 @@ public class PatientServiceImpl implements PatientService{
         }else {
             patient.get().setName(patientRequest.getName());
             patient.get().setDate_of_birth(patientRequest.getDate_of_birth());
-            patient.get().setAdmitted_by(patientRequest.getAdmitted_by());
+            patient.get().setDoctor(patientRequest.getDoctor());
             patientRepository.save(patient.get());
         }
         return patient;

@@ -3,6 +3,7 @@ package com.ironhack.my_lab402.data.model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,19 +19,23 @@ public class Doctor {
     private String department;
     @Column(name = "name", nullable = false)
     private String name;
+    @OneToMany
+    private List<Patient> patientList;
+
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private DoctorStatus status;
 
-    public Doctor(long employee_id, String department, String name, DoctorStatus status) {
+    public Doctor() {
+
+    }
+
+    public Doctor(long employee_id, String department, String name, List<Patient> patientList, DoctorStatus status) {
         this.employee_id = employee_id;
         this.department = department;
         this.name = name;
+        this.patientList = patientList;
         this.status = status;
-    }
-
-    public Doctor() {
-
     }
 
     public int getDoctorId() {
@@ -49,6 +54,10 @@ public class Doctor {
         return name;
     }
 
+    public List<Patient> getPatientList() {
+        return patientList;
+    }
+
     public DoctorStatus getStatus() {
         return status;
     }
@@ -65,6 +74,10 @@ public class Doctor {
         this.name = name;
     }
 
+    public void setPatientList(List<Patient> patientList) {
+        this.patientList = patientList;
+    }
+
     public void setStatus(DoctorStatus status) {
         this.status = status;
     }
@@ -74,21 +87,22 @@ public class Doctor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return getDoctorId() == doctor.getDoctorId() && getEmployee_id() == doctor.getEmployee_id() && getDepartment().equals(doctor.getDepartment()) && getName().equals(doctor.getName()) && getStatus() == doctor.getStatus();
+        return getDoctorId() == doctor.getDoctorId() && getEmployee_id() == doctor.getEmployee_id() && getDepartment().equals(doctor.getDepartment()) && getName().equals(doctor.getName()) && getPatientList().equals(doctor.getPatientList()) && getStatus() == doctor.getStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDoctorId(), getEmployee_id(), getDepartment(), getName(), getStatus());
+        return Objects.hash(getDoctorId(), getEmployee_id(), getDepartment(), getName(), getPatientList(), getStatus());
     }
 
     @Override
     public String toString() {
-        return "doctor{" +
+        return "Doctor{" +
                 "doctorId=" + doctorId +
                 ", employee_id=" + employee_id +
                 ", department='" + department + '\'' +
                 ", name='" + name + '\'' +
+                ", patientList=" + patientList +
                 ", status=" + status +
                 '}';
     }

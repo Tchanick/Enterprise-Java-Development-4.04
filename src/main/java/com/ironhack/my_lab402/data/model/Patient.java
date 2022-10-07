@@ -17,17 +17,19 @@ public class Patient {
     private String name;
     @Column(name = "date_of_birth", nullable = false)
     private Date date_of_birth;
-    @Column(name = "admitted_by", nullable = false)
-    private long admitted_by;
 
-    public Patient(String name, Date date_of_birth, long admitted_by) {
-        this.name = name;
-        this.date_of_birth = date_of_birth;
-        this.admitted_by = admitted_by;
-    }
+    @ManyToOne
+    @JoinColumn(name = "admitted_by")
+    private Doctor doctor;
 
     public Patient() {
 
+    }
+
+    public Patient(String name, Date date_of_birth, Doctor doctor) {
+        this.name = name;
+        this.date_of_birth = date_of_birth;
+        this.doctor = doctor;
     }
 
     public int getPatient_id() {
@@ -42,8 +44,8 @@ public class Patient {
         return date_of_birth;
     }
 
-    public long getAdmitted_by() {
-        return admitted_by;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
     public void setName(String name) {
@@ -54,8 +56,8 @@ public class Patient {
         this.date_of_birth = date_of_birth;
     }
 
-    public void setAdmitted_by(long admitted_by) {
-        this.admitted_by = admitted_by;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     @Override
@@ -63,21 +65,21 @@ public class Patient {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return getPatient_id() == patient.getPatient_id() && getAdmitted_by() == patient.getAdmitted_by() && getName().equals(patient.getName()) && getDate_of_birth().equals(patient.getDate_of_birth());
+        return getPatient_id() == patient.getPatient_id() && getName().equals(patient.getName()) && getDate_of_birth().equals(patient.getDate_of_birth()) && getDoctor().equals(patient.getDoctor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPatient_id(), getName(), getDate_of_birth(), getAdmitted_by());
+        return Objects.hash(getPatient_id(), getName(), getDate_of_birth(), getDoctor());
     }
 
     @Override
     public String toString() {
-        return "patient{" +
+        return "Patient{" +
                 "patient_id=" + patient_id +
                 ", name='" + name + '\'' +
                 ", date_of_birth=" + date_of_birth +
-                ", admitted_by=" + admitted_by +
+                ", doctor=" + doctor +
                 '}';
     }
 }

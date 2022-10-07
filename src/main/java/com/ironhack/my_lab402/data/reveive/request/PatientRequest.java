@@ -1,5 +1,6 @@
 package com.ironhack.my_lab402.data.reveive.request;
 
+import com.ironhack.my_lab402.data.model.Doctor;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.*;
@@ -12,9 +13,11 @@ public class PatientRequest {
     @NotBlank
     @NotNull
     private Date date_of_birth;
+    private Doctor doctor;
     @NotBlank
     @NotNull
     private long admitted_by;
+    
 
     public String getName() {
         return name;
@@ -38,5 +41,13 @@ public class PatientRequest {
 
     public void setAdmitted_by(long admitted_by) {
         this.admitted_by = admitted_by;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 }

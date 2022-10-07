@@ -22,6 +22,8 @@ public class DoctorServiceImpl implements DoctorService {
         newDoctor.setEmployee_id(doctorRequest.getEmployee_id());
         newDoctor.setDepartment(doctorRequest.getDepartment());
         newDoctor.setName(doctorRequest.getName());
+
+        newDoctor.setPatientList(doctorRequest.getPatientList());
         newDoctor.setStatus(doctorRequest.getStatus());
         doctorRepository.save(newDoctor);
         return new MessageResponse("New doctor created successfully");
@@ -36,6 +38,8 @@ public class DoctorServiceImpl implements DoctorService {
             doctor.get().setEmployee_id(doctorRequest.getEmployee_id());
             doctor.get().setDepartment(doctorRequest.getDepartment());
             doctor.get().setName(doctorRequest.getName());
+
+            doctor.get().setPatientList(doctorRequest.getPatientList());
             doctor.get().setStatus(doctorRequest.getStatus());
             doctorRepository.save(doctor.get());
         }

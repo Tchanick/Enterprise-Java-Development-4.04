@@ -1,12 +1,13 @@
 package com.ironhack.my_lab402.data.reveive.request;
 
 import com.ironhack.my_lab402.data.model.DoctorStatus;
+import com.ironhack.my_lab402.data.model.Patient;
 import com.sun.istack.NotNull;
 
-import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 public class DoctorRequest {
     @NotBlank
@@ -18,6 +19,9 @@ public class DoctorRequest {
     @NotBlank
     @NotNull
     private String name;
+    @NotBlank
+    @NotNull
+    private List<Patient> patientList;
     @NotBlank
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -53,5 +57,13 @@ public class DoctorRequest {
 
     public void setStatus(DoctorStatus status) {
         this.status = status;
+    }
+
+    public List<Patient> getPatientList() {
+        return patientList;
+    }
+
+    public void setPatientList(List<Patient> patientList) {
+        this.patientList = patientList;
     }
 }
