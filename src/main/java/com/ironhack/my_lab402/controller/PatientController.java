@@ -1,19 +1,15 @@
 package com.ironhack.my_lab402.controller;
 
-import com.ironhack.my_lab402.data.model.Doctor;
 import com.ironhack.my_lab402.data.model.Patient;
-import com.ironhack.my_lab402.data.reveive.request.DoctorRequest;
 import com.ironhack.my_lab402.data.reveive.request.PatientRequest;
 import com.ironhack.my_lab402.data.reveive.response.MessageResponse;
 import com.ironhack.my_lab402.exception.ResourceNotFoundException;
-import com.ironhack.my_lab402.service.DoctorService;
 import com.ironhack.my_lab402.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 

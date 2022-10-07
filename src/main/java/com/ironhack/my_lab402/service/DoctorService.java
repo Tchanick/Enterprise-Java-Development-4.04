@@ -1,6 +1,7 @@
 package com.ironhack.my_lab402.service;
 
 import com.ironhack.my_lab402.data.model.Doctor;
+import com.ironhack.my_lab402.data.model.DoctorStatus;
 import com.ironhack.my_lab402.data.reveive.request.DoctorRequest;
 import com.ironhack.my_lab402.data.reveive.response.MessageResponse;
 import com.ironhack.my_lab402.exception.ResourceNotFoundException;
@@ -16,4 +17,6 @@ public interface DoctorService {
     void deleteDoctor(Integer doctId) throws ResourceNotFoundException;
     Doctor getASingleDoctor(Integer doctId) throws ResourceNotFoundException;
     List<Doctor> getAllDoctor();
+
+    Doctor getAllDoctor2(DoctorStatus doctStatus) throws ResourceNotFoundException;
 }

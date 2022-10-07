@@ -1,6 +1,7 @@
 package com.ironhack.my_lab402.service;
 
 import com.ironhack.my_lab402.data.model.Doctor;
+import com.ironhack.my_lab402.data.model.DoctorStatus;
 import com.ironhack.my_lab402.data.repository.DoctorRepository;
 import com.ironhack.my_lab402.data.reveive.request.DoctorRequest;
 import com.ironhack.my_lab402.data.reveive.response.MessageResponse;
@@ -62,6 +63,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<Doctor> getAllDoctor() {
         return doctorRepository.findAll();
+    }
+
+    @Override
+    public Doctor getAllDoctor2(DoctorStatus doctStatus) throws ResourceNotFoundException{
+        return doctorRepository.findById(doctStatus.ordinal()).orElseThrow(() -> new ResourceNotFoundException("Doctor", "doctStatus", doctStatus));
     }
 
 

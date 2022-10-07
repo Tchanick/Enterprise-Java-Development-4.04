@@ -1,6 +1,7 @@
 package com.ironhack.my_lab402.controller;
 
 import com.ironhack.my_lab402.data.model.Doctor;
+import com.ironhack.my_lab402.data.model.DoctorStatus;
 import com.ironhack.my_lab402.data.reveive.request.DoctorRequest;
 import com.ironhack.my_lab402.data.reveive.response.MessageResponse;
 import com.ironhack.my_lab402.exception.ResourceNotFoundException;
@@ -28,6 +29,13 @@ public class DoctorController {
         Doctor doctor = doctorService.getASingleDoctor(doctId);
         return new ResponseEntity<>(doctor, HttpStatus.OK);
     }
+
+    @GetMapping("/find2/{doctStatus}")
+    public ResponseEntity<Doctor> getDoctorByStatus(@PathVariable("doctStatus") DoctorStatus doctStatus) throws ResourceNotFoundException {
+        Doctor doctor = doctorService.getAllDoctor2(doctStatus);
+        return new ResponseEntity<>(doctor, HttpStatus.OK);
+    }
+
 
     @PostMapping("/add")
     public ResponseEntity<MessageResponse> addDoctor(@RequestBody DoctorRequest doctor) throws ResourceNotFoundException {
