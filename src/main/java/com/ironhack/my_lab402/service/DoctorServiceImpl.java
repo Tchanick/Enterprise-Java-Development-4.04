@@ -20,7 +20,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public MessageResponse createDoctor(DoctorRequest doctorRequest){
         Doctor newDoctor = new Doctor();
-        newDoctor.setEmployee_id(doctorRequest.getEmployee_id());
+        newDoctor.setEmployeeId(doctorRequest.getEmployee_id());
         newDoctor.setDepartment(doctorRequest.getDepartment());
         newDoctor.setName(doctorRequest.getName());
 
@@ -36,7 +36,7 @@ public class DoctorServiceImpl implements DoctorService {
         if (doctor.isEmpty()){
             throw new ResourceNotFoundException("Doctor", "doctorId", doctId);
         } else {
-            doctor.get().setEmployee_id(doctorRequest.getEmployee_id());
+            doctor.get().setEmployeeId(doctorRequest.getEmployee_id());
             doctor.get().setDepartment(doctorRequest.getDepartment());
             doctor.get().setName(doctorRequest.getName());
 
@@ -49,7 +49,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public void deleteDoctor(Integer doctId) throws ResourceNotFoundException{
-        if (Objects.equals(doctorRepository.getById(doctId).getDoctorId(), doctId)){
+        if (Objects.equals(doctorRepository.getById(doctId).getEmployeeId(), doctId)){
             doctorRepository.deleteById(doctId);
         }else {
             throw new ResourceNotFoundException("Doctor", "doctorId", doctId);

@@ -52,11 +52,6 @@ public class PatientServiceImpl implements PatientService{
         return patientRepository.findById(patId).orElseThrow(() -> new ResourceNotFoundException("Patient", "patientId", patId));
     }
 
-//    @Override
-//    public Patient getPatientByDateOfBirth(Date patDateOfBirth) throws ResourceNotFoundException {
-//        return patientRepository.findOne(patDateOfBirth).orElseThrow(() -> new ResourceNotFoundException("Patient", "date_of_birth", patDateOfBirth));
-//    }
-
     @Override
     public List<Patient> getAllPatient() {
         return patientRepository.findAll();

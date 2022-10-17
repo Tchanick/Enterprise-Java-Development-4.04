@@ -4,7 +4,7 @@ import com.ironhack.my_lab402.data.model.Doctor;
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class PatientRequest {
     @NotBlank
@@ -12,12 +12,11 @@ public class PatientRequest {
     private String name;
     @NotBlank
     @NotNull
-    private Date date_of_birth;
+    private LocalDate date_of_birth;
     private Doctor doctor;
     @NotBlank
     @NotNull
     private long admitted_by;
-    
 
     public String getName() {
         return name;
@@ -27,20 +26,12 @@ public class PatientRequest {
         this.name = name;
     }
 
-    public Date getDate_of_birth() {
+    public LocalDate getDate_of_birth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
+    public void setDate_of_birth(LocalDate date_of_birth) {
         this.date_of_birth = date_of_birth;
-    }
-
-    public long getAdmitted_by() {
-        return admitted_by;
-    }
-
-    public void setAdmitted_by(long admitted_by) {
-        this.admitted_by = admitted_by;
     }
 
     public Doctor getDoctor() {
@@ -49,5 +40,13 @@ public class PatientRequest {
 
     public void setDoctor(Doctor doctor) {
         this.doctor = doctor;
+    }
+
+    public long getAdmitted_by() {
+        return admitted_by;
+    }
+
+    public void setAdmitted_by(long admitted_by) {
+        this.admitted_by = admitted_by;
     }
 }

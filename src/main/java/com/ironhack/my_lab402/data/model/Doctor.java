@@ -11,10 +11,8 @@ import java.util.Objects;
 @EntityListeners(AuditingEntityListener.class)
 public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int doctorId;
     @Column(name = "employee_id", nullable = false)
-    private long employee_id;
+    private long employeeId;
     @Column(name = "department", nullable = false)
     private String department;
     @Column(name = "name", nullable = false)
@@ -27,55 +25,50 @@ public class Doctor {
     private DoctorStatus status;
 
     public Doctor() {
-
     }
 
     public Doctor(long employee_id, String department, String name, List<Patient> patientList, DoctorStatus status) {
-        this.employee_id = employee_id;
+        this.employeeId = employee_id;
         this.department = department;
         this.name = name;
         this.patientList = patientList;
         this.status = status;
     }
 
-    public int getDoctorId() {
-        return doctorId;
+    public long getEmployeeId() {
+        return employeeId;
     }
 
-    public long getEmployee_id() {
-        return employee_id;
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getDepartment() {
         return department;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Patient> getPatientList() {
-        return patientList;
-    }
-
-    public DoctorStatus getStatus() {
-        return status;
-    }
-
-    public void setEmployee_id(long employee_id) {
-        this.employee_id = employee_id;
-    }
-
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public List<Patient> getPatientList() {
+        return patientList;
+    }
+
     public void setPatientList(List<Patient> patientList) {
         this.patientList = patientList;
+    }
+
+    public DoctorStatus getStatus() {
+        return status;
     }
 
     public void setStatus(DoctorStatus status) {
@@ -87,19 +80,18 @@ public class Doctor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doctor doctor = (Doctor) o;
-        return getDoctorId() == doctor.getDoctorId() && getEmployee_id() == doctor.getEmployee_id() && getDepartment().equals(doctor.getDepartment()) && getName().equals(doctor.getName()) && getPatientList().equals(doctor.getPatientList()) && getStatus() == doctor.getStatus();
+        return getEmployeeId() == doctor.getEmployeeId() && getDepartment().equals(doctor.getDepartment()) && getName().equals(doctor.getName()) && getPatientList().equals(doctor.getPatientList()) && getStatus() == doctor.getStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDoctorId(), getEmployee_id(), getDepartment(), getName(), getPatientList(), getStatus());
+        return Objects.hash(getEmployeeId(), getDepartment(), getName(), getPatientList(), getStatus());
     }
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "doctorId=" + doctorId +
-                ", employee_id=" + employee_id +
+                "employee_id=" + employeeId +
                 ", department='" + department + '\'' +
                 ", name='" + name + '\'' +
                 ", patientList=" + patientList +

@@ -3,7 +3,7 @@ package com.ironhack.my_lab402.data.model;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -16,17 +16,16 @@ public class Patient {
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "date_of_birth", nullable = false)
-    private Date date_of_birth;
+    private LocalDate date_of_birth;
 
     @ManyToOne
     @JoinColumn(name = "admitted_by")
     private Doctor doctor;
 
     public Patient() {
-
     }
 
-    public Patient(String name, Date date_of_birth, Doctor doctor) {
+    public Patient(String name, LocalDate date_of_birth, Doctor doctor) {
         this.name = name;
         this.date_of_birth = date_of_birth;
         this.doctor = doctor;
@@ -40,7 +39,7 @@ public class Patient {
         return name;
     }
 
-    public Date getDate_of_birth() {
+    public LocalDate getDate_of_birth() {
         return date_of_birth;
     }
 
@@ -52,7 +51,7 @@ public class Patient {
         this.name = name;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
+    public void setDate_of_birth(LocalDate date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 
